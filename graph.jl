@@ -44,6 +44,16 @@ function for_all_nodes(g, f)
     end
 end
 
+function graph_to_matrix(g)
+    n = length(g)
+    result = Array(Float64, n, n)
+    fill!(result, 0.0)
+    for_all_edges(g, (from, to, attrs) -> begin
+        result[from, to] = if haskey(attrs, "weight") attrs["weight"] else 1.0 end
+    end)
+    result
+end
+
 function graph_to_graphviz(g; f=STDOUT, directed=false)
     reserved_edge_attrs = ["name", "x", "y", "pos"]
 
