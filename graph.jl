@@ -128,8 +128,8 @@ end
 
 function apsp_floyd_warshall(g)
     n = length(g)
-    result = Array(Int32, n, n)
-    fill!(result, 1000000)
+    result = Array(Float64, n, n)
+    fill!(result, 1000000.0)
     for i in 1:n
         result[i,i] = 0
     end
